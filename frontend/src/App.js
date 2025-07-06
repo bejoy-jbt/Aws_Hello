@@ -6,13 +6,22 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://localhost:5000/api/greet', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name })
-    });
-    const data = await res.json();
-    setResponse(data.message);
+
+    try {
+      const res = await fetch('http://13.60.220.5:5000/api/greet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name })
+      });
+
+      if (!res.ok) throw new Error('Network response was not ok');
+
+      const data = await res.json();
+      setResponse(data.message);
+    } catch (error) {
+      console.error('Error:', error);
+      setResponse('Failed to reach the server.');
+    }
   };
 
   return (

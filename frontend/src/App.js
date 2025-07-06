@@ -1,3 +1,5 @@
+// src/App.js
+
 import React, { useState } from 'react';
 
 function App() {
@@ -8,7 +10,7 @@ function App() {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://13.60.220.5:5000/api/greet', {
+      const res = await fetch('/api/greet', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name })
@@ -25,7 +27,7 @@ function App() {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
       <h2>React ↔ Node Full Stack Demo</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -33,10 +35,13 @@ function App() {
           placeholder="Enter your name"
           value={name}
           onChange={e => setName(e.target.value)}
+          style={{ padding: '0.5rem', marginRight: '1rem' }}
         />
-        <button type="submit">Send</button>
+        <button type="submit" style={{ padding: '0.5rem 1rem' }}>
+          Send
+        </button>
       </form>
-      {response && <p>{response}</p>}
+      {response && <p style={{ marginTop: '1rem' }}>{response}</p>}
     </div>
   );
 }

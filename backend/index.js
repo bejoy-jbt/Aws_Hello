@@ -11,6 +11,6 @@ app.post('/api/greet', (req, res) => {
   res.json({ message: `Hello, ${name}! 👋` });
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ Backend running at http://localhost:${PORT}`);
+app.listen(5000, '0.0.0.0', () => {
+  console.log("Server running on http://0.0.0.0:5000");
 });

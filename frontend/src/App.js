@@ -4,7 +4,7 @@ function App() {
   const [name, setName] = useState('');
   const [response, setResponse] = useState('');
 
-  const BACKEND_URL = 'http://http://16.16.186.83/:5000'; // <-- your EC2 IP here
+  const BACKEND_URL = 'http://http://16.16.186.83:5000'; // <-- your EC2 IP here
 
   const handleSubmit = async (e) => {
     e.preventDefault();

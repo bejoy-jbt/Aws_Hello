@@ -1,35 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 function App() {
   const [name, setName] = useState('');
   const [response, setResponse] = useState('');
-  const [backendURL, setBackendURL] = useState('');
 
-  // Detect public IP once
-  useEffect(() => {
-    async function fetchIP() {
-      try {
-        const res = await fetch('https://api.ipify.org?format=json');
-        const data = await res.json();
-        setBackendURL(`http://${data.ip}:5000`);
-      } catch (err) {
-        console.error('Could not fetch public IP', err);
-      }
-    }
-
-    fetchIP();
-  }, []);
+  const BACKEND_URL = 'http://0.0.0.0:5000'; // <-- your EC2 IP here
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!backendURL) {
-      setResponse('Waiting for backend URL...');
-      return;
-    }
-
     try {
-      const res = await fetch(`${backendURL}/api/greet`, {
+      const res = await fetch(`${BACKEND_URL}/api/greet`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name })

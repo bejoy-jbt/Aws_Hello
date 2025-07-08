@@ -13,7 +13,7 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name })
       });
-
+      console.log(res);
       if (!res.ok) throw new Error('Network response was not ok');
 
       const data = await res.json();

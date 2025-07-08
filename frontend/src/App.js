@@ -4,13 +4,11 @@ function App() {
   const [name, setName] = useState('');
   const [response, setResponse] = useState('');
 
-  const BACKEND_URL = 'http://http://16.16.186.83:5000'; // <-- your EC2 IP here
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${BACKEND_URL}/api/greet`, {
+      const res = await fetch('/api/greet', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name })
